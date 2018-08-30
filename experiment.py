@@ -28,7 +28,7 @@ class Net:
 
     def forward(self, input):
         samples = []
-        for m, s in zip(self.means, self.devs):
+        for i, (m, s) in enumerate(zip(self.means, self.devs)):
             d = torch.distributions.normal.Normal(m, s).sample()
             d.requires_grad = True
             input = torch.sigmoid(input @ d)
@@ -60,16 +60,16 @@ class NormalNet(nn.Module):
 
     def forward(self, i):
         i = torch.sigmoid(self.l1(i))
-        i = torch.tanh(self.l2(i))
-        i = torch.tanh(self.l3(i))
+        i = torch.sigmoid(self.l2(i))
+        i = torch.sigmoid(self.l3(i))
         return i
 
 
-logstep = 10
-idim, hdim, odim, bs = 10, 20, 1, 2000000
+logstep = 1
+idim, hdim, odim, bs = 10, 50, 1, 2000000
 alpha = 0.9
 beta = 0.9
-gamma = 0.9999
+gamma = 0.999
 # DATASET
 x = [i for i in tqdm(itertools.islice(itertools.product([0, 1], repeat=idim), 2*bs),
                      total=min(2**idim, 2*bs))]
