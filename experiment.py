@@ -66,10 +66,10 @@ class NormalNet(nn.Module):
 
 
 logstep = 10
-idim, hdim, odim, bs = 25, 10, 1, 2000000
+idim, hdim, odim, bs = 10, 20, 1, 2000000
 alpha = 0.9
 beta = 0.9
-gamma = 0.99999
+gamma = 0.9999
 # DATASET
 x = [i for i in tqdm(itertools.islice(itertools.product([0, 1], repeat=idim), 2*bs),
                      total=min(2**idim, 2*bs))]

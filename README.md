@@ -8,4 +8,4 @@ pipenv install --deploy
 pipenv run python sto.py
 ```
 
-Monitor progress with tensorboard
+Monitor progress with tensorboard.
