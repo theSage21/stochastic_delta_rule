@@ -10,4 +10,4 @@ pipenv run python sto.py
 
 Monitor progress with tensorboard. Sample Experiment produces:
 
-[losses](losses.png)
+![losses](losses.png)
